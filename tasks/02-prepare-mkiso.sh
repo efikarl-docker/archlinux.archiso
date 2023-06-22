@@ -54,37 +54,6 @@ cp -rf override/$i/* $i
 
 # ${ISOMK_CFG}/efiboot/loader
 i=${ISOMK_CFG}/efiboot/loader
-# #.1
-# sed -i "s/linux/${KERNEL_DST}/g" $i/loader.conf
-# #.2
-# declare -A kernel_entries
-# kernel_entries[0]=${WORKSPACE}/${ISOMK_CFG}/efiboot/loader/entries/01-archiso-x86_64-linux.conf
-# kernel_entries[1]=${WORKSPACE}/${ISOMK_CFG}/efiboot/loader/entries/02-archiso-x86_64-speech-linux.conf
-# #.2.1
-# for i in ${kernel_entries[@]}
-# do
-#   sed -i "/^title/ s/$/ [${KERNEL_DST}]/" $i
-# done
-# # $1=vmlinuz $2=initramfs
-# function cst_kernel_entries_ker()
-# {
-#   for i in ${kernel_entries[@]}
-#   do
-#     sed -i "s/${1}-linux$/${1}-${KERNEL_DST}/g" $i && sed -i "s/${2}-linux.img$/${2}-${KERNEL_DST}.img/g" $i
-#   done
-# }
-# #.2.2
-# cst_kernel_entries_ker vmlinuz initramfs
-# # $1=serial_port $2=serial_rate $3=loglevel
-# function cst_kernel_entries_opt()
-# {
-#   for i in ${kernel_entries[@]}
-#   do
-#     sed -i "/^options/ s/$/ console=${1},${2} console=tty0 loglevel=${3} audit=0 copytoram/" $i
-#   done
-# }
-# #.2.3
-# cst_kernel_entries_opt ttyS0 115200 4
 rm -rf $i/* && cp -rf override/$i/* $i
 
 # ${ISOMK_CFG}/grub: never this ugly.
